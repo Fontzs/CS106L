@@ -1,2 +1,1 @@
-# CS106L
-CS106L-fa22
+[CS106L](http://web.stanford.edu/class/cs106l/)
