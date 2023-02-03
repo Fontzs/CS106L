@@ -1,1 +1,1 @@
-The answer is: 42
+Writing to stream: 1730
