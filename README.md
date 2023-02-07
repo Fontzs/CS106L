@@ -10,6 +10,10 @@
 
 [CS106L-win22](https://web.stanford.edu/class/archive/cs/cs106l/cs106l.1234/index.html)
 
+[CS106L-win22](https://web.stanford.edu/class/archive/cs/cs106l/cs106l.1224/)
+
+[CS106L-fa21](https://web.stanford.edu/class/archive/cs/cs106l/cs106l.1222/)
+
 [CS106L-win18](https://web.stanford.edu/class/archive/cs/cs106l/cs106l.1184/assignments.html)
 
 [CS106L-fa18](https://web.stanford.edu/class/archive/cs/cs106l/cs106l.1192/)
