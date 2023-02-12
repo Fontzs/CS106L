@@ -1,12 +1,16 @@
-[CS106L](http://web.stanford.edu/class/cs106l/)
+## Overview
 
-[textbook](http://web.stanford.edu/class/cs106l/full_course_reader.pdf)
+ [CS106L-fa22](https://web.stanford.edu/class/archive/cs/cs106l/cs106l.1232/index.html) is a companion class to CS106B/CS106X that explores the modern C++ language in depth. We'll cover some of the most exciting features of C++, including modern patterns that give it beauty and power.
+
+
 
 ## Resources
 
-[CS106L-sp22](https://web.stanford.edu/class/archive/cs/cs106l/cs106l.1226/index.html)
+[textbook](http://web.stanford.edu/class/cs106l/full_course_reader.pdf)
 
-[CS106L-fa22](https://web.stanford.edu/class/archive/cs/cs106l/cs106l.1232/index.html)
+[CS106L-latest](http://web.stanford.edu/class/cs106l/) 
+
+[CS106L-sp22](https://web.stanford.edu/class/archive/cs/cs106l/cs106l.1226/index.html)
 
 [CS106L-win22](https://web.stanford.edu/class/archive/cs/cs106l/cs106l.1234/index.html)
 
