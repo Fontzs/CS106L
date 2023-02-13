@@ -1,19 +1,25 @@
-#include <iostream>     // for cout, cin
-#include <fstream>      // for ifstream
-#include <sstream>      // for stringstream
-#include <filesystem>   	// making inputting files easier
+#include <filesystem>  // making inputting files easier
+#include <fstream>     // for ifstream
+#include <iostream>    // for cout, cin
+#include <queue>
+#include <sstream>  // for stringstream
 #include <stdexcept>
+#include <unordered_map>
 #include <unordered_set>
 #include <vector>
-#include <queue>
-#include <unordered_map>
+
 #include "wikiscraper.h"
 
-using std::cout;            using std::endl;
-using std::ifstream;        using std::stringstream;
-using std::string;          using std::vector;
-using std::priority_queue;  using std::unordered_map;
-using std::unordered_set;   using std::cin;
+using std::cin;
+using std::cout;
+using std::endl;
+using std::ifstream;
+using std::priority_queue;
+using std::string;
+using std::stringstream;
+using std::unordered_map;
+using std::unordered_set;
+using std::vector;
 
 /*
  * This is the function you will be implementing parts of. It takes
@@ -33,19 +39,21 @@ using std::unordered_set;   using std::cin;
 
 // TODO: ASSIGNMENT 2 TASK 5:
 // Please implement the following function, which should take in two sets of strings
-// and returns the number of common strings between the two sets. You should use 
+// and returns the number of common strings between the two sets. You should use
 // lambdas and std::count_if.
 // Estimated length: <4 lines
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // BEGIN STUDENT CODE HERE
-int numCommonLinks(const unordered_set<string>& curr_set, const unordered_set<string>& target_set) {
+int numCommonLinks(const unordered_set<string>& curr_set, const unordered_set<string>& target_set){
     // replace all of these lines!
-    (void) target_set;
-    (void) curr_set;
-    return 0; 
-}
-// END STUDENT CODE HERE
+    return std::count_if(curr_set.begin(), curr_set.end(),
+                         [](auto i) {
+                             if (std::find(target_set.begin(), target_set.end(), i))
+                                 return true return false
+                         })
+
+}  // END STUDENT CODE HERE
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 vector<string> findWikiLadder(const string& start_page, const string& end_page) {
@@ -60,40 +68,44 @@ vector<string> findWikiLadder(const string& start_page, const string& end_page) 
     // You'll need to consider what variables this lambda will need to capture, as well as
     // what parameters it'll take in. Be sure to use the function you implemented in Task 1!
     // Estimated length: <3 lines
-    
+
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     // BEGIN STUDENT CODE HERE
     auto cmp_fn = [&w, &target_set](const vector<string>& left, const vector<string>& right) {
         // replace all of these lines.
-        (void) w;
-        (void) target_set;
-        (void) left;
-        (void) right;
-        return false; // replace this line! make sure to use numCommonLinks.
+        // (void)w;
+        // (void)target_set;
+        // (void)left;
+        // (void)right;
+        // return false;
+        auto num1 = numCommonLinks(w.getLinkSet(left.back()), target_set);
+        auto num2 = numCommonLinks(w.getLinkSet(right.back()), target_set);
+        return num1 < num2;
+        // replace this line! make sure to use numCommonLinks.
     };
     // END STUDENT CODE HERE
     ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     // TODO: ASSIGNMENT 2 TASK 7:
-    // Last exercise! please instantiate the priority queue for this algorithm, called "queue". Be sure 
-    // to use your work from Task 2, cmp_fn, to instantiate our queue. 
-    // Estimated length: 1 line
-    
+    // Last exercise! please instantiate the priority queue for this algorithm, called "queue".
+    // Be sure to use your work from Task 2, cmp_fn, to instantiate our queue. Estimated length:
+    // 1 line
+
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     // BEGIN STUDENT CODE HERE
     // something like priority_queue<...> queue(...);
     // please delete ALL 4 of these lines! they are here just for the code to compile.
-    std::priority_queue<vector<string>> queue;
-    throw std::invalid_argument("Not implemented yet.\n");
-    return {};
-
+    // std::priority_queue<vector<string>> queue;
+    // throw std::invalid_argument("Not implemented yet.\n");
+    // return {};
+    std::priority_queue < vector<string>, vector<vector<string>, decltype(cmp_fn)> queue(cmp_fn);
     // END STUDENT CODE HERE
     ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     queue.push({start_page});
     unordered_set<string> visited;
 
-    while(!queue.empty()) {
+    while (!queue.empty()) {
         vector<string> curr_path = queue.top();
         queue.pop();
         string curr = curr_path.back();
@@ -106,13 +118,13 @@ vector<string> findWikiLadder(const string& start_page, const string& end_page) 
          * we don't enqueue every link on this page if the target page
          * is in the links of this set.
          */
-        if(link_set.find(end_page) != link_set.end()) {
+        if (link_set.find(end_page) != link_set.end()) {
             curr_path.push_back(end_page);
             return curr_path;
         }
 
-        for(const string& neighbour : link_set) {
-            if(visited.find(neighbour) == visited.end()) {
+        for (const string& neighbour : link_set) {
+            if (visited.find(neighbour) == visited.end()) {
                 visited.insert(neighbour);
                 vector<string> new_path = curr_path;
                 new_path.push_back(neighbour);
@@ -162,14 +174,14 @@ int main() {
      * We've already implemented this for you!
      */
     for (auto& ladder : outputLadders) {
-        if(ladder.empty()) {
+        if (ladder.empty()) {
             cout << "No ladder found!" << endl;
         } else {
             cout << "Ladder found:" << endl;
-            cout << "\t" << "{";
+            cout << "\t"
+                 << "{";
 
-            std::copy(ladder.begin(), ladder.end() - 1,
-                      std::ostream_iterator<string>(cout, ", "));
+            std::copy(ladder.begin(), ladder.end() - 1, std::ostream_iterator<string>(cout, ", "));
             /*
              * The above is an alternate way to print to cout using the
              * STL algorithms library and iterators. This is equivalent to:
@@ -182,7 +194,3 @@ int main() {
     }
     return 0;
 }
-
-
-
-

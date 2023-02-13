@@ -1,0 +1,3 @@
+/mnt/e/CS_EE_course/CS106L/assignment/assignment1/build/CMakeFiles/main.dir
+/mnt/e/CS_EE_course/CS106L/assignment/assignment1/build/CMakeFiles/edit_cache.dir
+/mnt/e/CS_EE_course/CS106L/assignment/assignment1/build/CMakeFiles/rebuild_cache.dir
